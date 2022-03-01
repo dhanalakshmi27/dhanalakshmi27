@@ -25,7 +25,8 @@ public class LoginService {
 		entity.setUserId(dto.getUserId());
 		entity.setAccountNo(dto.getAccountNo);
 		entity.setPassword(dto.getpassword);
-		entity = repo.save(entity);
+		entity = repo.save(entity)
+		   .findOneByUserIdAndPassword(dto.getUserId(),dto.getpassword());
 		
 		if(entity == null){
             apiResponse.setData("User login failed");
